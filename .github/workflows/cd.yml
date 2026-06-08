@@ -1,0 +1,24 @@
+name: TaskFlow CD Pipeline
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Render via Webhook
+        run: |
+          echo "Triggering Render deployment webhook..."
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+
+      - name: Deployment Confirmation
+        run: |
+          echo "Deployment command triggered successfully at $(date)"
