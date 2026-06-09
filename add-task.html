@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Add New Task</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <h1>TaskFlow Management</h1>
+        <nav class="main-nav">
+            <a href="index.html">Dashboard</a> | 
+            <a href="add-task.html" class="active">Add Task</a> | 
+            <a href="task-list.html">Task List</a> | 
+            <a href="task-detail.html">Task Detail</a> | 
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="form-section">
+            <h2>➕ Add A New Task</h2>
+            <p>Fill out the details below to create a new assignment or project task.</p>
+            
+            <form action="#" method="POST" class="task-form">
+                
+                <div class="form-group">
+                    <label for="task-title">Task Title:</label>
+                    <input type="text" id="task-title" name="title" placeholder="Enter task title..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="task-desc">Description:</label>
+                    <textarea id="task-desc" name="description" rows="4" placeholder="Enter task details/description..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="due-date">Due Date:</label>
+                    <input type="date" id="due-date" name="dueDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="priority">Priority Level:</label>
+                    <select id="priority" name="priority" required>
+                        <option value="" disabled selected>Select priority...</option>
+                        <option value="High">🔴 High Priority</option>
+                        <option value="Medium">🟡 Medium Priority</option>
+                        <option value="Low">🟢 Low Priority</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-submit">Save Task</button>
+                    <button type="reset" class="btn btn-reset">Clear Form</button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 TaskFlow App. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
