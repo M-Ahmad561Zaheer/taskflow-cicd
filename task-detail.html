@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskflow - Task Detail</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">TaskFlow</div>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="add-task.html">Add Task</a>
+            <a href="task-list.html">Task List</a>
+            <a href="task-detail.html" class="active">Task Detail</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>📋 Task Detailed View</h2>
+                <span class="badge priority-high">High Priority</span>
+            </div>
+            
+            <div class="card-body">
+                <h3 class="task-title">Setup CI/CD Pipeline for Project</h3>
+                <p class="task-desc">
+                    Implement GitHub Actions workflows for continuous integration and continuous deployment. 
+                    Ensure the Docker image builds correctly on Pull Requests and deploys seamlessly on Vercel/Render.
+                </p>
+                
+                <div class="task-meta">
+                    <p><strong>📅 Due Date:</strong> June 15, 2026</p>
+                    <p><strong>🔄 Status:</strong> <span class="status-pending">In Progress</span></p>
+                    <p><strong>👤 Assigned To:</strong> Umer</p>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button class="btn btn-success" onclick="alert('Task marked as completed!')">Mark as Complete</button>
+                <button class="btn btn-danger" onclick="alert('Task deleted successfully!')">Delete Task</button>
+                <a href="task-list.html" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TaskFlow DevOps Team. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
