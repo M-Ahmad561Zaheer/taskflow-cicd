@@ -9,48 +9,94 @@
 <body>
 
     <header>
-        <div class="logo">TaskFlow</div>
-        <nav>
-            <a href="index.html">Dashboard</a>
-            <a href="add-task.html">Add Task</a>
-            <a href="task-list.html">Task List</a>
-            <a href="task-detail.html" class="active">Task Detail</a>
-            <a href="about.html">About</a>
+        <nav style="background-color: #2c3e50; padding: 15px; display: flex; justify-content: center; gap: 20px;">
+            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">Dashboard</a>
+            <a href="add-task.html" style="color: white; text-decoration: none; font-weight: bold;">Add Task</a>
+            <a href="task-list.html" style="color: white; text-decoration: none; font-weight: bold;">Task List</a>
+            <a href="task-detail.html" class="active" style="color: #3498db; border-bottom: 2px solid #3498db; text-decoration: none; font-weight: bold;">Task Detail</a>
+            <a href="about.html" style="color: white; text-decoration: none; font-weight: bold;">About</a>
         </nav>
     </header>
 
     <main class="container">
-        <div class="card">
-            <div class="card-header">
-                <h2>📋 Task Detailed View</h2>
-                <span class="badge priority-high">High Priority</span>
-            </div>
-            
-            <div class="card-body">
-                <h3 class="task-title">Setup CI/CD Pipeline for Project</h3>
-                <p class="task-desc">
-                    Implement GitHub Actions workflows for continuous integration and continuous deployment. 
-                    Ensure the Docker image builds correctly on Pull Requests and deploys seamlessly on Vercel/Render.
-                </p>
+        <div class="card" id="detailCard" style="color: #333; text-align: left; padding: 0; box-shadow: none;">
+            <div id="taskContent">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f4f6f9; padding-bottom: 15px;">
+                    <h2 style="margin: 0;">📋 Task Detailed View</h2>
+                    <span id="taskPriority" class="priority-high">HIGH</span>
+                </div>
                 
-                <div class="task-meta">
-                    <p><strong>📅 Due Date:</strong> June 15, 2026</p>
-                    <p><strong>🔄 Status:</strong> <span class="status-pending">In Progress</span></p>
-                    <p><strong>👤 Assigned To:</strong> Umer</p>
+                <div class="card-body" style="margin-top: 20px;">
+                    <h3 id="taskTitle" style="color: #2c3e50; font-size: 1.5rem;">Loading Task...</h3>
+                    <p id="taskDesc" style="color: #555; line-height: 1.6; font-size: 1.1rem; background: #f9f9f9; padding: 15px; border-left: 4px solid #3498db; border-radius: 4px;">
+                        Fetching details from the task repository...
+                    </p>
+                    
+                    <div class="task-meta" style="margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; background: #f4f6f9; padding: 15px; border-radius: 6px;">
+                        <p style="margin: 0;"><strong>📅 Due Date:</strong> <span id="taskDate">--</span></p>
+                        <p style="margin: 0;"><strong>🔄 Status:</strong> <span id="taskStatus" class="status-pending">PENDING</span></p>
+                        <p style="margin: 0;"><strong>👤 Assigned To:</strong> <span id="taskAssignee">--</span></p>
+                    </div>
                 </div>
             </div>
 
-            <div class="card-footer">
-                <button class="btn btn-success" onclick="alert('Task marked as completed!')">Mark as Complete</button>
-                <button class="btn btn-danger" onclick="alert('Task deleted successfully!')">Delete Task</button>
-                <a href="task-list.html" class="btn btn-secondary">Back to List</a>
+            <div class="card-footer" style="margin-top: 30px; display: flex; gap: 15px; border-top: 1px solid #ddd; padding-top: 20px;">
+                <button class="btn btn-submit" style="background-color: #2ecc71;" onclick="alert('Task status updated successfully!')">Mark as Complete</button>
+                <button class="btn btn-reset" style="background-color: #e74c3c;" onclick="handleDelete()">Delete Task</button>
+                <a href="task-list.html" class="btn" style="background-color: #95a5a6; color: white; text-decoration: none; padding: 10px 25px; border-radius: 5px; font-weight: bold;">Back to List</a>
             </div>
         </div>
     </main>
 
-    <footer>
+    <footer style="text-align: center; padding: 20px; background-color: #2c3e50; color: white; margin-top: 60px;">
         <p>&copy; 2026 TaskFlow DevOps Team. All rights reserved.</p>
     </footer>
 
+    <script>
+        // Exact dataset from Abdullah's task-list.html to fetch details seamlessly
+        const sharedTasks = [
+            { id: 1, title: "Complete DevOps Assignment", dueDate: "2026-06-15", priority: "high", status: "pending", description: "Finish the CI/CD pipeline integration assignment", assignedTo: "Team Lead" },
+            { id: 2, title: "Review Pull Requests", dueDate: "2026-06-12", priority: "high", status: "completed", description: "Review all team members' PRs for Assignment 04", assignedTo: "Team Lead" },
+            { id: 3, title: "Update Documentation", dueDate: "2026-06-18", priority: "medium", status: "pending", description: "Update the project documentation with setup instructions", assignedTo: "Member 1" },
+            { id: 4, title: "Test Deployment Pipeline", dueDate: "2026-06-14", priority: "high", status: "pending", description: "Test the CD pipeline on Render", assignedTo: "Member 2" },
+            { id: 5, title: "Fix Navigation Links", dueDate: "2026-06-10", priority: "low", status: "completed", description: "Ensure all navigation links work correctly across pages", assignedTo: "Member 3" },
+            { id: 6, title: "Create Task Detail Page", dueDate: "2026-06-16", priority: "medium", status: "pending", description: "Implement the task detail view page", assignedTo: "Member 4" },
+            { id: 7, title: "Write Individual Reflection", dueDate: "2026-06-20", priority: "low", status: "pending", description: "Write 4-5 lines about CI/CD learning experience", assignedTo: "All Members" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. URL se '?id=X' parameters fetch karna
+            const urlParams = new URLSearchParams(window.location.search);
+            const taskId = parseInt(urlParams.get('id')) || 1; // Default to ID 1 if no ID in URL
+
+            // 2. ID match karke task find karna
+            const currentTask = sharedTasks.find(t => t.id === taskId);
+
+            if (currentTask) {
+                // 3. Elements ko update karna dynamically
+                document.getElementById('taskTitle').innerText = currentTask.title;
+                document.getElementById('taskDesc').innerText = currentTask.description;
+                document.getElementById('taskDate').innerText = new Date(currentTask.dueDate).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+                document.getElementById('taskAssignee').innerText = currentTask.assignedTo;
+                
+                // Priority class manipulation
+                const pBadge = document.getElementById('taskPriority');
+                pBadge.innerText = currentTask.priority.toUpperCase() + " PRIORITY";
+                pBadge.className = `priority-${currentTask.priority}`;
+
+                // Status configuration
+                const sBadge = document.getElementById('taskStatus');
+                sBadge.innerText = currentTask.status.toUpperCase();
+                sBadge.className = `status-${currentTask.status}`;
+            } else {
+                document.getElementById('taskContent').innerHTML = `<h3 style="color: #e74c3c;">❌ Task Not Found</h3><p>The specific task id does not exist in the platform.</p>`;
+            }
+        });
+
+        function handleDelete() {
+            alert('Task deleted successfully!');
+            window.location.href = "task-list.html";
+        }
+    </script>
 </body>
 </html>
