@@ -9,7 +9,7 @@
 <body>
 
     <nav>
-        <a href="index.html">Dashboard</a>
+        <a href="index.html" class="active" style="border-bottom: 2px solid #3498db; color: #3498db;">Dashboard</a>
         <a href="add-task.html">Add Task</a>
         <a href="task-list.html">Task List</a>
         <a href="task-detail.html">Task Detail</a>
@@ -18,23 +18,37 @@
 
     <div class="container">
         <h1>Welcome to TaskFlow Dashboard</h1>
-        <p>Manage your team tasks efficiently and automate your workflow with CI/CD.</p>
+        <p>Manage your team tasks efficiently and automate your workflow with CI/CD pipelines.</p>
         
         <div class="stats-grid">
             <div class="card total">
                 <h3>Total Tasks</h3>
-                <p>12</p>
+                <p style="font-size: 2.5rem; font-weight: bold; margin: 10px 0;">12</p>
             </div>
             <div class="card pending">
                 <h3>Pending Tasks</h3>
-                <p>5</p>
+                <p style="font-size: 2.5rem; font-weight: bold; margin: 10px 0;">5</p>
             </div>
             <div class="card completed">
                 <h3>Completed Tasks</h3>
-                <p>7</p>
+                <p style="font-size: 2.5rem; font-weight: bold; margin: 10px 0;">7</p>
+            </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #ddd; margin-top: 40px; margin-bottom: 20px;">
+
+        <div style="text-align: center; margin-top: 20px;">
+            <h3 style="color: #2c3e50;">Quick Actions</h3>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 15px;">
+                <a href="add-task.html" class="filter-btn active" style="text-decoration: none; padding: 12px 25px;">➕ Create New Task</a>
+                <a href="task-list.html" class="filter-btn" style="text-decoration: none; padding: 12px 25px; background-color: #bdc3c7; color: #333;">📋 View Task Board</a>
             </div>
         </div>
     </div>
+
+    <footer style="text-align: center; padding: 20px; background-color: #2c3e50; color: white; margin-top: 60px;">
+        <p>&copy; 2026 TaskFlow DevOps Team. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
