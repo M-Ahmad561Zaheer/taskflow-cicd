@@ -55,9 +55,6 @@ h1, h2 {
 
 .card.total { background-color: #3498db; }
 .card.pending { background-color: #e67e22; }
-<<<<<<< Updated upstream
-.card.completed { background-color: #2ecc71; }
-=======
 .card.completed { background-color: #2ecc71; }
 
 
@@ -252,4 +249,4 @@ h1, h2 {
     color: white;
     margin-top: 40px;
 }
->>>>>>> Stashed changes
+

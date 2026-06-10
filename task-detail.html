@@ -53,7 +53,6 @@
     </footer>
 
     <script>
-        // Exact dataset from Abdullah's task-list.html to fetch details seamlessly
         const sharedTasks = [
             { id: 1, title: "Complete DevOps Assignment", dueDate: "2026-06-15", priority: "high", status: "pending", description: "Finish the CI/CD pipeline integration assignment", assignedTo: "Team Lead" },
             { id: 2, title: "Review Pull Requests", dueDate: "2026-06-12", priority: "high", status: "completed", description: "Review all team members' PRs for Assignment 04", assignedTo: "Team Lead" },
@@ -65,26 +64,21 @@
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. URL se '?id=X' parameters fetch karna
             const urlParams = new URLSearchParams(window.location.search);
-            const taskId = parseInt(urlParams.get('id')) || 1; // Default to ID 1 if no ID in URL
+            const taskId = parseInt(urlParams.get('id')) || 1;
 
-            // 2. ID match karke task find karna
             const currentTask = sharedTasks.find(t => t.id === taskId);
 
             if (currentTask) {
-                // 3. Elements ko update karna dynamically
                 document.getElementById('taskTitle').innerText = currentTask.title;
                 document.getElementById('taskDesc').innerText = currentTask.description;
                 document.getElementById('taskDate').innerText = new Date(currentTask.dueDate).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
                 document.getElementById('taskAssignee').innerText = currentTask.assignedTo;
                 
-                // Priority class manipulation
                 const pBadge = document.getElementById('taskPriority');
                 pBadge.innerText = currentTask.priority.toUpperCase() + " PRIORITY";
                 pBadge.className = `priority-${currentTask.priority}`;
 
-                // Status configuration
                 const sBadge = document.getElementById('taskStatus');
                 sBadge.innerText = currentTask.status.toUpperCase();
                 sBadge.className = `status-${currentTask.status}`;
