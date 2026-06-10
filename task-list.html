@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Task List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="add-task.html">Add Task</a>
+        <a href="task-list.html">Task List</a>
+        <a href="task-detail.html">Task Detail</a>
+        <a href="about.html">About</a>
+    </nav>
+
+    <div class="container">
+        <h1>Task List</h1>
+        <p>View and manage all your tasks in one place.</p>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterTasks('all')">All Tasks</button>
+            <button class="filter-btn" onclick="filterTasks('pending')">Pending Tasks</button>
+            <button class="filter-btn" onclick="filterTasks('completed')">Completed Tasks</button>
+        </div>
+
+        <table class="task-table" id="taskTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Due Date</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="taskTableBody">
+               
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        
+        let tasks = [
+            {
+                id: 1,
+                title: "Complete DevOps Assignment",
+                dueDate: "2026-06-15",
+                priority: "high",
+                status: "pending",
+                description: "Finish the CI/CD pipeline integration assignment",
+                assignedTo: "Team Lead"
+            },
+            {
+                id: 2,
+                title: "Review Pull Requests",
+                dueDate: "2026-06-12",
+                priority: "high",
+                status: "completed",
+                description: "Review all team members' PRs for Assignment 04",
+                assignedTo: "Team Lead"
+            },
+            {
+                id: 3,
+                title: "Update Documentation",
+                dueDate: "2026-06-18",
+                priority: "medium",
+                status: "pending",
+                description: "Update the project documentation with setup instructions",
+                assignedTo: "Member 1"
+            },
+            {
+                id: 4,
+                title: "Test Deployment Pipeline",
+                dueDate: "2026-06-14",
+                priority: "high",
+                status: "pending",
+                description: "Test the CD pipeline on Render",
+                assignedTo: "Member 2"
+            },
+            {
+                id: 5,
+                title: "Fix Navigation Links",
+                dueDate: "2026-06-10",
+                priority: "low",
+                status: "completed",
+                description: "Ensure all navigation links work correctly across pages",
+                assignedTo: "Member 3"
+            },
+            {
+                id: 6,
+                title: "Create Task Detail Page",
+                dueDate: "2026-06-16",
+                priority: "medium",
+                status: "pending",
+                description: "Implement the task detail view page",
+                assignedTo: "Member 4"
+            },
+            {
+                id: 7,
+                title: "Write Individual Reflection",
+                dueDate: "2026-06-20",
+                priority: "low",
+                status: "pending",
+                description: "Write 4-5 lines about CI/CD learning experience",
+                assignedTo: "All Members"
+            }
+        ];
+
+
+        function renderTasks(filter = 'all') {
+            const tbody = document.getElementById('taskTableBody');
+            let filteredTasks = tasks;
+            
+            if (filter === 'pending') {
+                filteredTasks = tasks.filter(task => task.status === 'pending');
+            } else if (filter === 'completed') {
+                filteredTasks = tasks.filter(task => task.status === 'completed');
+            }
+
+            if (filteredTasks.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="no-tasks">No tasks found</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filteredTasks.map(task => `
+                <tr>
+                    <td><strong>${escapeHtml(task.title)}</strong></td>
+                    <td>${formatDate(task.dueDate)}</td>
+                    <td class="priority-${task.priority}">${task.priority.toUpperCase()}</td>
+                    <td>
+                        <span class="status-${task.status}">${task.status.toUpperCase()}</span>
+                    </td>
+                    <td>
+                        <a href="task-detail.html?id=${task.id}" class="view-link">View Details</a>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+       
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+
+        
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+       
+        function filterTasks(filter) {
+            
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if ((filter === 'all' && btn.textContent === 'All Tasks') ||
+                    (filter === 'pending' && btn.textContent === 'Pending Tasks') ||
+                    (filter === 'completed' && btn.textContent === 'Completed Tasks')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderTasks(filter);
+        }
+
+      
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTasks('all');
+        });
+    </script>
+</body>
+</html>
