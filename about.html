@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - About Us</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* About Page Specific Styles to maintain layout without touching style.css */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .member-card {
+            background: #f8f9fa;
+            border-top: 4px solid #2c3e50;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+        .member-avatar {
+            width: 80px;
+            height: 80px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2rem;
+        }
+        .member-card.lead {
+            border-top-color: #3498db;
+            background: #f0f7fc;
+        }
+        .project-details {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 40px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="add-task.html">Add Task</a>
+        <a href="task-list.html">Task List</a>
+        <a href="task-detail.html">Task Detail</a>
+        <a href="about.html" class="active" style="border-bottom: 2px solid #3498db; color: #3498db;">About</a>
+    </nav>
+
+    <div class="container" style="text-align: center;">
+        <h1>About TaskFlow Project</h1>
+        <p style="font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto;">
+            TaskFlow is a state-of-the-art Task Management System built as a part of our Automated Software Testing & DevOps laboratory curriculum. 
+            The system utilizes a fully automated CI/CD pipeline powered by GitHub Actions and Docker containerization.
+        </p>
+
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 40px 0;">
+
+        <h2>💻 Meet Our DevOps Team</h2>
+        <p style="color: #7f8c8d;">The brilliant minds behind the architecture and development of TaskFlow.</p>
+
+        <div class="team-grid">
+            
+            <div class="member-card lead">
+                <div class="member-avatar" style="background: #3498db; color: white;">👑</div>
+                <h3 style="margin: 5px 0; color: #2c3e50;">M. Ahmad Zaheer</h3>
+                <p style="font-weight: bold; color: #3498db; margin: 5px 0;">Team Lead & DevOps</p>
+                <p style="font-size: 0.9rem; color: #7f8c8d; margin: 0;">Designed Architecture, GitHub Actions Workflows & Dockerfile.</p>
+            </div>
+
+            <div class="member-card">
+                <div class="member-avatar">👨‍💻</div>
+                <h3 style="margin: 5px 0; color: #2c3e50;">Umer Akram</h3>
+                <p style="font-weight: bold; color: #e67e22; margin: 5px 0;">Backend Developer</p>
+                <p style="font-size: 0.9rem; color: #7f8c8d; margin: 0;">Developed Dynamic Task Detailed View & Component Routing.</p>
+            </div>
+
+            <div class="member-card">
+                <div class="member-avatar">👨‍💻</div>
+                <h3 style="margin: 5px 0; color: #2c3e50;">Abdullah Naveed</h3>
+                <p style="font-weight: bold; color: #2ecc71; margin: 5px 0;">Frontend Engineer</p>
+                <p style="font-size: 0.9rem; color: #7f8c8d; margin: 0;">Crafted Interactive Task List UI, Filter Modules & Core Layouts.</p>
+            </div>
+
+            <div class="member-card">
+                <div class="member-avatar">🎨</div>
+                <h3 style="margin: 5px 0; color: #2c3e50;">Usama</h3>
+                <p style="font-weight: bold; color: #9b59b6; margin: 5px 0;">UI/UX Designer</p>
+                <p style="font-size: 0.9rem; color: #7f8c8d; margin: 0;">Designed Portfolio Modules, Core Metadata & Documentation Pages.</p>
+            </div>
+
+        </div>
+
+        <div class="project-details">
+            <h3 style="margin-top: 0; color: #3498db;">🚀 CI/CD Infrastructure Specifications</h3>
+            <ul style="line-height: 1.8; padding-left: 20px; margin-bottom: 0;">
+                <li><strong>Continuous Integration (CI):</strong> Automated triggers on Pull Requests to <code>develop</code> branch utilizing <code>docker/login-action</code>.</li>
+                <li><strong>Container Registry:</strong> Multi-tagged Docker Images (<code>latest</code> & <code>${{ github.sha }}</code>) pushed successfully to Docker Hub.</li>
+                <li><strong>Continuous Deployment (CD):</strong> Static source routing integrated seamlessly with Vercel Production Environment.</li>
+                <li><strong>Base Image Optimization:</strong> Standard Nginx Alpine distribution ensuring minimal disk footprint and ultra-fast hosting.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 20px; background-color: #2c3e50; color: white; margin-top: 60px;">
+        <p>&copy; 2026 TaskFlow DevOps Team. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
